@@ -24,6 +24,7 @@ public class JDBuscarDuplicados extends javax.swing.JDialog {
     public JDBuscarDuplicados(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
         jbSiEliminar.setVisible(false);
         jbNoEliminar.setVisible(false);
     }

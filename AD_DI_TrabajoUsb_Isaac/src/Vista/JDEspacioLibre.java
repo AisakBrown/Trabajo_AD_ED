@@ -24,6 +24,7 @@ public class JDEspacioLibre extends javax.swing.JDialog {
     public JDEspacioLibre(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
