@@ -26,7 +26,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
+
     public void actualizarInterfazProgreso(String rutaArchivo, int progreso) {
         jlMostrarArchivos.setText(rutaArchivo);
         jProgressBar.setValue(progreso);
@@ -122,13 +122,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
-                            .addComponent(jlError)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                         .addGap(12, 12, 12)
                                         .addComponent(jtfRutaArchivoACopiar, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jtfRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jtfRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jlError, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jbRutaCopiar)
@@ -167,12 +167,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlMostrarArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                .addComponent(jbCrearBackUp)
-                .addGap(26, 26, 26)
-                .addComponent(jlError)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addComponent(jbCrearBackUp))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jlError, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(38, 38, 38))
         );
 
         pack();
@@ -182,7 +185,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
         int seleccion = fileChooser.showOpenDialog(jtfRutaArchivoACopiar);
-        
+
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             File ficheroSeleccionado = fileChooser.getSelectedFile();
             jtfRutaArchivoACopiar.setText(ficheroSeleccionado.getAbsolutePath());
@@ -195,7 +198,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         int seleccion = fileChooser.showOpenDialog(jtfRutaDestino);
-        
+
         if (seleccion == JFileChooser.APPROVE_OPTION) {
             File ficheroSeleccionado = fileChooser.getSelectedFile();
             jtfRutaDestino.setText(ficheroSeleccionado.getAbsolutePath());
@@ -211,27 +214,30 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 String seleccion = (String) jComboBox1.getSelectedItem();
                 ArrayList<File> lista = backup.obtenerArchivosFormaRecursiva(backup.getArchivoACopiar().getAbsolutePath(), seleccion);
                 jProgressBar.setMaximum(lista.size());
-                Thread queryThread = new Thread() {
-                    public void run() {
-                        try {
-                            if (seleccion.equalsIgnoreCase("Todos los archivos")) {
-                                backup.copiarArchivosDesdeLista(lista);
+                if (lista.size() == 0) {
+                    jlError.setText("No hay archivos que copiar");
+                } else {
+                    jlError.setText("");
+                    Thread queryThread = new Thread() {
+                        public void run() {
+                            try {
+                                if (seleccion.equalsIgnoreCase("Todos los archivos")) {
+                                    backup.copiarArchivosDesdeLista(lista);
+                                } else if (seleccion.equalsIgnoreCase("Videos")) {
+                                    backup.copiarVideosDesdelista(lista);
+                                } else if (seleccion.equalsIgnoreCase("Imágenes")) {
+                                    backup.copiarImagenesDesdelista(lista);
+                                } else if (seleccion.equalsIgnoreCase("Documentos")) {
+                                    backup.copiarDocumentosDesdelista(lista);
+                                }
+                            } catch (IOException ex) {
+                                Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            else if(seleccion.equalsIgnoreCase("Videos")){
-                                backup.copiarVideosDesdelista(lista);
-                            }
-                            else if(seleccion.equalsIgnoreCase("Imágenes")){
-                                backup.copiarImagenesDesdelista(lista);
-                            }
-                            else if(seleccion.equalsIgnoreCase("Documentos")){
-                                backup.copiarDocumentosDesdelista(lista);
-                            }
-                        } catch (IOException ex) {
-                            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         }
-                    }
-                };
-                queryThread.start();
+                    };
+
+                    queryThread.start();
+                }
             } catch (IOException ex) {
                 Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
