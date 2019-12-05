@@ -56,25 +56,25 @@
                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
-                                      <Component id="jtfRutaArchivoACopiar" min="-2" pref="346" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jtfRutaDestino" alignment="1" min="-2" pref="344" max="-2" attributes="0"/>
-                                  <Component id="jlError" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jbRutaCopiar" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jbRutaDestino" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jbCrearBackUp" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jProgressBar" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="jlMostrarArchivos" min="-2" pref="511" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                              <Component id="jtfRutaArchivoACopiar" min="-2" pref="346" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="jlError" alignment="0" min="-2" pref="332" max="-2" attributes="0"/>
+                                          <Component id="jtfRutaDestino" alignment="1" min="-2" pref="344" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="botonBackUpSeleccionarDestino" min="-2" max="-2" attributes="0"/>
+                                          <Component id="botonBackUpRutaOrigen" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jlMostrarArchivos" min="-2" pref="511" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                       </Group>
                   </Group>
@@ -85,7 +85,15 @@
                       <Component id="jComboBox1" min="-2" pref="155" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jProgressBar" min="-2" pref="156" max="-2" attributes="0"/>
+                  <Component id="botonBackUpCopiaSeguridad" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="74" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -100,31 +108,27 @@
               <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtfRutaArchivoACopiar" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbRutaCopiar" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jtfRutaArchivoACopiar" min="-2" max="-2" attributes="0"/>
+                  <Component id="botonBackUpRutaOrigen" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jtfRutaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jbRutaDestino" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="jlMostrarArchivos" min="-2" pref="14" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="jProgressBar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="13" max="32767" attributes="0"/>
-                      <Component id="jbCrearBackUp" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="jtfRutaDestino" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jlMostrarArchivos" min="-2" pref="14" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Component id="jlError" min="-2" pref="15" max="-2" attributes="0"/>
-                  </Group>
+                  <Component id="botonBackUpSeleccionarDestino" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="jProgressBar" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="botonBackUpCopiaSeguridad" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+              <Component id="jlError" min="-2" pref="15" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -143,23 +147,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="jtfRutaArchivoACopiar">
     </Component>
-    <Component class="javax.swing.JButton" name="jbRutaCopiar">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Seleccionar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbRutaCopiarMouseClicked"/>
-      </Events>
-    </Component>
     <Component class="javax.swing.JTextField" name="jtfRutaDestino">
-    </Component>
-    <Component class="javax.swing.JButton" name="jbRutaDestino">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Seleccionar"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbRutaDestinoMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlError">
       <Properties>
@@ -167,14 +155,6 @@
           <Color blue="0" green="0" red="ff" type="rgb"/>
         </Property>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jbCrearBackUp">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Crear copia de seguridad"/>
-      </Properties>
-      <Events>
-        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jbCrearBackUpMouseClicked"/>
-      </Events>
     </Component>
     <Component class="javax.swing.JProgressBar" name="jProgressBar">
       <Properties>
@@ -204,6 +184,41 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Seleccione tipo de archivo a copiar:"/>
       </Properties>
+    </Component>
+    <Component class="PaqueteBotonBackUp.BotonBackUp" name="botonBackUpCopiaSeguridad">
+      <Properties>
+        <Property name="actionCommand" type="java.lang.String" value="Crear copia de seguridad"/>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="label" type="java.lang.String" value="Crear copia de seguridad"/>
+        <Property name="name" type="java.lang.String" value="Crear copia de seguridad" noResource="true"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonBackUpCopiaSeguridadMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="PaqueteBotonBackUp.BotonBackUp" name="botonBackUpSeleccionarDestino">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="label" type="java.lang.String" value="Seleccionar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonBackUpSeleccionarDestinoMouseClicked"/>
+      </Events>
+    </Component>
+    <Component class="PaqueteBotonBackUp.BotonBackUp" name="botonBackUpRutaOrigen">
+      <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="99" green="99" red="99" type="rgb"/>
+        </Property>
+        <Property name="label" type="java.lang.String" value="Seleccionar"/>
+      </Properties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="botonBackUpRutaOrigenMouseClicked"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

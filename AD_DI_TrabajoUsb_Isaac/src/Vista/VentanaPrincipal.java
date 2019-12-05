@@ -45,15 +45,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jtfRutaArchivoACopiar = new javax.swing.JTextField();
-        jbRutaCopiar = new javax.swing.JButton();
         jtfRutaDestino = new javax.swing.JTextField();
-        jbRutaDestino = new javax.swing.JButton();
         jlError = new javax.swing.JLabel();
-        jbCrearBackUp = new javax.swing.JButton();
         jProgressBar = new javax.swing.JProgressBar();
         jlMostrarArchivos = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
+        botonBackUpCopiaSeguridad = new PaqueteBotonBackUp.BotonBackUp();
+        botonBackUpSeleccionarDestino = new PaqueteBotonBackUp.BotonBackUp();
+        botonBackUpRutaOrigen = new PaqueteBotonBackUp.BotonBackUp();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -64,34 +64,39 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Seleccione ruta destino:");
 
-        jbRutaCopiar.setText("Seleccionar");
-        jbRutaCopiar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbRutaCopiarMouseClicked(evt);
-            }
-        });
-
-        jbRutaDestino.setText("Seleccionar");
-        jbRutaDestino.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbRutaDestinoMouseClicked(evt);
-            }
-        });
-
         jlError.setForeground(new java.awt.Color(255, 0, 0));
-
-        jbCrearBackUp.setText("Crear copia de seguridad");
-        jbCrearBackUp.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jbCrearBackUpMouseClicked(evt);
-            }
-        });
 
         jProgressBar.setForeground(new java.awt.Color(0, 0, 255));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos los archivos", "Imágenes", "Documentos", "Videos" }));
 
         jLabel3.setText("Seleccione tipo de archivo a copiar:");
+
+        botonBackUpCopiaSeguridad.setActionCommand("Crear copia de seguridad");
+        botonBackUpCopiaSeguridad.setBackground(new java.awt.Color(153, 153, 153));
+        botonBackUpCopiaSeguridad.setLabel("Crear copia de seguridad");
+        botonBackUpCopiaSeguridad.setName("Crear copia de seguridad"); // NOI18N
+        botonBackUpCopiaSeguridad.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonBackUpCopiaSeguridadMouseClicked(evt);
+            }
+        });
+
+        botonBackUpSeleccionarDestino.setBackground(new java.awt.Color(153, 153, 153));
+        botonBackUpSeleccionarDestino.setLabel("Seleccionar");
+        botonBackUpSeleccionarDestino.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonBackUpSeleccionarDestinoMouseClicked(evt);
+            }
+        });
+
+        botonBackUpRutaOrigen.setBackground(new java.awt.Color(153, 153, 153));
+        botonBackUpRutaOrigen.setLabel("Seleccionar");
+        botonBackUpRutaOrigen.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonBackUpRutaOrigenMouseClicked(evt);
+            }
+        });
 
         jMenu1.setText("Buscar duplicados");
         jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -123,27 +128,32 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jtfRutaArchivoACopiar, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jtfRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jlError, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jbRutaCopiar)
-                                    .addComponent(jbRutaDestino)
-                                    .addComponent(jbCrearBackUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jProgressBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
                                 .addGap(14, 14, 14)
-                                .addComponent(jlMostrarArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addGap(12, 12, 12)
+                                                .addComponent(jtfRutaArchivoACopiar, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(jlError, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jtfRutaDestino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 344, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(botonBackUpSeleccionarDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(botonBackUpRutaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jlMostrarArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 511, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(105, 105, 105)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonBackUpCopiaSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(74, 74, 74))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,59 +165,41 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(jLabel1)
                 .addGap(6, 6, 6)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jtfRutaArchivoACopiar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbRutaCopiar))
-                .addGap(18, 18, 18)
+                    .addComponent(botonBackUpRutaOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
                 .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jtfRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbRutaDestino))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlMostrarArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
-                        .addComponent(jbCrearBackUp))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jlError, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jtfRutaDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlMostrarArchivos, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonBackUpSeleccionarDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jProgressBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(botonBackUpCopiaSeguridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jlError, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbRutaCopiarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRutaCopiarMouseClicked
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
-        int seleccion = fileChooser.showOpenDialog(jtfRutaArchivoACopiar);
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+        JDBuscarDuplicados ventanaDuplicados = new JDBuscarDuplicados(this, true);
+        ventanaDuplicados.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
 
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File ficheroSeleccionado = fileChooser.getSelectedFile();
-            jtfRutaArchivoACopiar.setText(ficheroSeleccionado.getAbsolutePath());
-        } else if (seleccion == JFileChooser.ERROR_OPTION) {
-            jlError.setText("Error, vuelva a intentarlo");
-        }
-    }//GEN-LAST:event_jbRutaCopiarMouseClicked
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+        JDEspacioLibre ventanaEspacioLibre = new JDEspacioLibre(this, true);
+        ventanaEspacioLibre.setVisible(true);
+    }//GEN-LAST:event_jMenu2MouseClicked
 
-    private void jbRutaDestinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbRutaDestinoMouseClicked
-        JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int seleccion = fileChooser.showOpenDialog(jtfRutaDestino);
-
-        if (seleccion == JFileChooser.APPROVE_OPTION) {
-            File ficheroSeleccionado = fileChooser.getSelectedFile();
-            jtfRutaDestino.setText(ficheroSeleccionado.getAbsolutePath());
-        } else if (seleccion == JFileChooser.ERROR_OPTION) {
-            jlError.setText("Error, vuelva a intentarlo");
-        }
-    }//GEN-LAST:event_jbRutaDestinoMouseClicked
-
-    private void jbCrearBackUpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbCrearBackUpMouseClicked
+    private void botonBackUpCopiaSeguridadMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBackUpCopiaSeguridadMouseClicked
         if (jtfRutaArchivoACopiar != null && jtfRutaDestino != null) {
             try {
                 BackUp backup = new BackUp(jtfRutaArchivoACopiar.getText(), jtfRutaDestino.getText(), this);
@@ -242,17 +234,33 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    }//GEN-LAST:event_jbCrearBackUpMouseClicked
+    }//GEN-LAST:event_botonBackUpCopiaSeguridadMouseClicked
 
-    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
-        JDBuscarDuplicados ventanaDuplicados = new JDBuscarDuplicados(this, true);
-        ventanaDuplicados.setVisible(true);
-    }//GEN-LAST:event_jMenu1MouseClicked
+    private void botonBackUpSeleccionarDestinoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBackUpSeleccionarDestinoMouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int seleccion = fileChooser.showOpenDialog(jtfRutaDestino);
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-        JDEspacioLibre ventanaEspacioLibre = new JDEspacioLibre(this, true);
-        ventanaEspacioLibre.setVisible(true);
-    }//GEN-LAST:event_jMenu2MouseClicked
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File ficheroSeleccionado = fileChooser.getSelectedFile();
+            jtfRutaDestino.setText(ficheroSeleccionado.getAbsolutePath());
+        } else if (seleccion == JFileChooser.ERROR_OPTION) {
+            jlError.setText("Error, vuelva a intentarlo");
+        }
+    }//GEN-LAST:event_botonBackUpSeleccionarDestinoMouseClicked
+
+    private void botonBackUpRutaOrigenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonBackUpRutaOrigenMouseClicked
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        int seleccion = fileChooser.showOpenDialog(jtfRutaArchivoACopiar);
+
+        if (seleccion == JFileChooser.APPROVE_OPTION) {
+            File ficheroSeleccionado = fileChooser.getSelectedFile();
+            jtfRutaArchivoACopiar.setText(ficheroSeleccionado.getAbsolutePath());
+        } else if (seleccion == JFileChooser.ERROR_OPTION) {
+            jlError.setText("Error, vuelva a intentarlo");
+        }
+    }//GEN-LAST:event_botonBackUpRutaOrigenMouseClicked
 
     /**
      * @param args the command line arguments
@@ -266,7 +274,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
                     break;
                 }
             }
@@ -290,6 +298,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private PaqueteBotonBackUp.BotonBackUp botonBackUpCopiaSeguridad;
+    private PaqueteBotonBackUp.BotonBackUp botonBackUpRutaOrigen;
+    private PaqueteBotonBackUp.BotonBackUp botonBackUpSeleccionarDestino;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
@@ -299,9 +310,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JProgressBar jProgressBar;
-    private javax.swing.JButton jbCrearBackUp;
-    private javax.swing.JButton jbRutaCopiar;
-    private javax.swing.JButton jbRutaDestino;
     private javax.swing.JLabel jlError;
     private javax.swing.JLabel jlMostrarArchivos;
     private javax.swing.JTextField jtfRutaArchivoACopiar;
