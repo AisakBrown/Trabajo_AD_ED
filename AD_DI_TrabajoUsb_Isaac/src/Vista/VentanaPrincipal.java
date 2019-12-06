@@ -8,9 +8,14 @@ package Vista;
 import Modelo.BackUp;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.help.HelpBroker;
+import javax.help.HelpSet;
+import javax.help.HelpSetException;
 import javax.swing.JFileChooser;
 
 /**
@@ -25,6 +30,22 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public VentanaPrincipal() {
         initComponents();
         setLocationRelativeTo(null);
+        try {
+            mostrarAyuda();
+        } catch (MalformedURLException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (HelpSetException ex) {
+            Logger.getLogger(VentanaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private void mostrarAyuda() throws MalformedURLException, HelpSetException {
+        File fichero = new File("C:\\Users\\isaac\\Documents\\NetBeansProjects\\AD_DI_TrabajoUsb_Isaac\\help\\help_set.hs");
+        URL hsURL = fichero.toURI().toURL();
+
+        HelpSet helpset = new HelpSet(getClass().getClassLoader(), hsURL);
+        HelpBroker hb = helpset.createHelpBroker();
+        hb.enableHelpKey(getRootPane(), "VentanaPrincipal", helpset);
     }
 
     public void actualizarInterfazProgreso(String rutaArchivo, int progreso) {
